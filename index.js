@@ -616,10 +616,11 @@ app.post("/questions/:questionId", function(req, res){
 }   
 })
 
-app.listen(3000,function(){
-  console.log("server started")
-})
-
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = process.env.PORT || 3000;
+}
+app.listen(port);
 
 // functions
 
