@@ -31,7 +31,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb://localhost:27017/blogwebdb",{useUnifiedTopology: true, useNewUrlParser:true, useFindAndModify: false});
+mongoose.connect("mongodb+srv://Admin_Fida:Fida%40Shar%23786@cluster1-5iygr.mongodb.net/blogwepDB?retryWrites=true&w=majority",{useNewUrlParser:true, useUnifiedTopology: true,  useFindAndModify: false});
 mongoose.set("useCreateIndex", true);
 
 
@@ -301,8 +301,8 @@ app.get("/questions", function(req,res){
     })
    
 } else {
-  clientStatus = "/signin"
-  logButton = "SignIn"
+  clientStatus = "/verify"
+  logButton = "SignUp"
   Question.find().sort({_id: -1}).exec(function(err, foundQuestions){
     if(!err){
       res.render("questions", {questions: foundQuestions, clientStatus: clientStatus, logButton: logButton,menu:menu,url: req.url});
@@ -433,8 +433,8 @@ app.get("/blog",function(req,res){
   })
 
 } else {
-  clientStatus = "/signin"
-  logButton = "Login"
+  clientStatus = "/verify"
+  logButton = "SignUp"
   BlogPost.find().sort({_id: -1}).exec(function(err,foundPost){
     if(err) console.log(err);
     res.render("blog",{BlogPost: foundPost, clientStatus: clientStatus, logButton: logButton,menu:menu,url: req.url})
